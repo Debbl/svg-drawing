@@ -8,7 +8,14 @@ interface Props {
 const Card: React.FC<Props> = (props) => {
   return (
     <div
-      className={`relative cursor-none full overflow-hidden box-border rounded-8 p-1px ${props.className}`}
+      relative
+      cursor-none
+      full
+      overflow-hidden
+      box-border
+      rounded-8
+      p-1px
+      className={props.className}
     >
       {props.children}
     </div>

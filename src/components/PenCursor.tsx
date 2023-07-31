@@ -16,11 +16,14 @@ const PenCursor: React.FC = () => {
   };
 
   return (
-    <div className="pointer-events-none absolute inset-0" ref={elRef}>
+    <div pointer-events-none absolute inset-0 ref={elRef}>
       <div
-        className={`i-solar:pen-bold-duotone relative translate-y--1/1 transition-transform origin-bottom-right ${
-          isDown && "scale-75"
-        }`}
+        i-solar:pen-bold-duotone
+        relative
+        translate-y="-1/1"
+        transition-transform
+        origin-bottom-right
+        className={`${isDown ? "scale-85" : ""}`}
         style={cursorStyle}
       />
     </div>

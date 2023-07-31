@@ -1,6 +1,13 @@
-import { defineConfig, presetIcons, presetUno } from "unocss";
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetUno,
+} from "unocss";
+import transformerAttributifyJsx from "@unocss/transformer-attributify-jsx-babel";
 
 export default defineConfig({
-  shortcuts: [["full", "w-full h-full"]],
-  presets: [presetUno(), presetIcons()],
+  shortcuts: [["full", "h-full w-full"]],
+  presets: [presetUno(), presetIcons(), presetAttributify()],
+  transformers: [transformerAttributifyJsx()],
 });

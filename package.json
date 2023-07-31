@@ -20,6 +20,7 @@
     "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.22.5",
     "@debbl/eslint-config-prettier": "^0.0.48",
     "@debbl/eslint-config-react": "^0.0.48",
     "@iconify-json/solar": "^1.1.1",
@@ -28,14 +29,14 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
-    "@unocss/eslint-config": "^0.54.0",
-    "@unocss/preset-icons": "^0.54.0",
+    "@unocss/eslint-config": "^0.54.1",
+    "@unocss/preset-attributify": "^0.54.1",
+    "@unocss/preset-icons": "^0.54.1",
+    "@unocss/transformer-attributify-jsx-babel": "^0.54.1",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.46.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.1.6",
-    "unocss": "^0.54.0",
+    "unocss": "^0.54.1",
     "vite": "^4.4.7"
   }
 }
