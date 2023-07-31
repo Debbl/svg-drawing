@@ -8,8 +8,8 @@ const Index: React.FC = () => {
   const svgCanvasRef = useRef<ElementRef<typeof SvgCanvas>>(null);
 
   return (
-    <div text-center>
-      <div inline-block>
+    <div className="text-center">
+      <div className="inline-block">
         <Card>
           <SvgCanvas ref={svgCanvasRef} height={600} width={800} />
           <PenCursor />

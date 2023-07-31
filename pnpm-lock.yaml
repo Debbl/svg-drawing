@@ -55,13 +55,7 @@ devDependencies:
   '@unocss/eslint-config':
     specifier: ^0.54.0
     version: 0.54.0(eslint@8.46.0)(typescript@5.1.6)
-  '@unocss/preset-attributify':
-    specifier: ^0.54.0
-    version: 0.54.0
   '@unocss/preset-icons':
-    specifier: ^0.54.0
-    version: 0.54.0
-  '@unocss/transformer-attributify-jsx':
     specifier: ^0.54.0
     version: 0.54.0
   '@vitejs/plugin-react':

@@ -3,24 +3,21 @@ import { useMouse } from "ahooks";
 
 const PenCursor: React.FC = () => {
   const elRef = useRef<HTMLDivElement>(null);
-  const { clientX, clientY } = useMouse(elRef.current);
+  const { elementX, elementY } = useMouse(elRef.current);
 
-  // const cursorStyle = {
-  //   left: `${clientX}px`,
-  //   top: `${clientY}px,`,
-  // };
+  const cursorStyle = {
+    left: `${elementX}px`,
+    top: `${elementY}px`,
+  };
 
   return (
-    <div absolute inset-0 cursor-none ref={elRef}>
+    <div className="absolute inset-0 cursor-none" ref={elRef}>
       <div
-        relative
-        translate-y="-100%"
-        className="i-solar:pen-bold-duotone"
-        transition-transform
-        style={{ left: `${clientX}px`, top: `${clientY}px` }}
+        className="i-solar:pen-bold-duotone relative transition-transform"
+        style={cursorStyle}
       />
     </div>
   );
-}
+};
 
 export default PenCursor;

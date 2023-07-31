@@ -142,7 +142,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   }
 
   return (
-    <div relative full>
+    <div className="relative full">
       <svg {...svgAttrs} ref={svgRef} onMouseDown={(e) => onMouseDown(e)}>
         <rect {...bgReactAttr} />
         <g mask="url(#brush)">
