@@ -1,12 +1,15 @@
 import React from "react";
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
 }
 
 const Card: React.FC<Props> = (props) => {
   return (
-    <div className="relative full overflow-hidden border-1 border-red border-solid rounded-8 p-1px">
+    <div
+      className={`relative cursor-none full overflow-hidden box-border rounded-8 p-1px ${props.className}`}
+    >
       {props.children}
     </div>
   );

@@ -5,10 +5,6 @@ const useSyncState = <T>(defaultValue: T) => {
   const syncStateRef = useRef<T>(state);
 
   const setSyncState = (newState: T) => {
-    console.log(
-      "🚀 ~ file: useSyncState.ts:8 ~ setSyncState ~ newState:",
-      newState
-    );
     syncStateRef.current = newState;
     setState(newState);
   };

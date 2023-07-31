@@ -10,8 +10,8 @@ const Index: React.FC = () => {
   return (
     <div className="text-center">
       <div className="inline-block">
-        <Card>
-          <SvgCanvas ref={svgCanvasRef} height={600} width={800} />
+        <Card className="h-[600px] w-[800px]">
+          <SvgCanvas ref={svgCanvasRef} width={800} height={600} />
           <PenCursor />
         </Card>
       </div>
