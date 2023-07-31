@@ -1,5 +1,15 @@
-import type { MouseEventHandler, SVGProps } from "react";
-import React, { useMemo, useRef, useState } from "react";
+import {
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import type {
+  ForwardRefRenderFunction,
+  MouseEventHandler,
+  SVGProps,
+} from "react";
 import { getStroke } from "perfect-freehand";
 import { useEventListener } from "ahooks";
 import { throttle } from "lodash-es";
@@ -15,7 +25,6 @@ import type {
 interface Props {
   width: number;
   height: number;
-
   densities?: number;
   initialLines?: Line[];
   drawOptions?: DrawOptions;
@@ -23,7 +32,14 @@ interface Props {
   brushOptions?: BrushOptions;
 }
 
-const SvgCanvas: React.FC<Props> = (props) => {
+interface ImperativeHandle {
+  onClear: () => void;
+}
+
+const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
+  props,
+  _
+) => {
   const svgAttrs = {
     width: props.width,
     height: props.height,
@@ -84,6 +100,10 @@ const SvgCanvas: React.FC<Props> = (props) => {
   );
   const onMouseup = (_: MouseEvent) => onDrawEnd();
 
+  useImperativeHandle(undefined, () => ({
+    onClear,
+  }));
+
   useEventListener("mousemove", onMousemove);
   useEventListener("mouseup", onMouseup);
 
@@ -117,6 +137,10 @@ const SvgCanvas: React.FC<Props> = (props) => {
     setIsDrawing(false);
   }
 
+  function onClear() {
+    setLines([]);
+  }
+
   return (
     <div relative full>
       <svg {...svgAttrs} ref={svgRef} onMouseDown={(e) => onMouseDown(e)}>
@@ -137,4 +161,4 @@ const SvgCanvas: React.FC<Props> = (props) => {
   );
 };
 
-export default SvgCanvas;
+export default forwardRef(SvgCanvas);
