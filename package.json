@@ -11,6 +11,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ahooks": "^3.7.8",
+    "lodash-es": "^4.17.21",
+    "perfect-freehand": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.14.2",
@@ -19,6 +22,7 @@
   "devDependencies": {
     "@debbl/eslint-config-prettier": "^0.0.48",
     "@debbl/eslint-config-react": "^0.0.48",
+    "@types/lodash-es": "^4.17.8",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
