@@ -178,7 +178,7 @@ const SvgCanvas: React.FC = () => {
   const onMousemove = (e: MouseEvent) =>
     throttle(
       () => onDraw({ x: e.clientX, y: e.clientY }, drawing, lines),
-      100
+      33
     )();
   const onMouseup = (_: MouseEvent) => onDrawEnd();
 
@@ -197,7 +197,6 @@ const SvgCanvas: React.FC = () => {
   }
 
   function onDraw(pos: Position, isStart: boolean, lines: Line[]) {
-    console.log("🚀 ~ file: SvgCanvas.tsx:197 ~ onDraw ~ isStart:", isStart);
     if (!isStart) return;
 
     const currentLine = lines[lines.length - 1];
