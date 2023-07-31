@@ -1,9 +1,8 @@
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+
 const App: React.FC = () => {
-  return (
-    <div>
-      <p className="items-center flex">Hello</p>
-    </div>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 };
 
 export default App;
