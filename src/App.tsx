@@ -1,7 +1,7 @@
 const App: React.FC = () => {
   return (
     <div>
-      <p className="text-red">Hello</p>
+      <p className="items-center flex">Hello</p>
     </div>
   );
 };
