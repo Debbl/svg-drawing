@@ -118,7 +118,7 @@ const SvgCanvas: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="relative full">
+    <div relative full>
       <svg {...svgAttrs} ref={svgRef} onMouseDown={(e) => onMouseDown(e)}>
         <rect {...bgReactAttr} />
         <g mask="url(#brush)">
