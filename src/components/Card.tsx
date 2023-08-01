@@ -14,7 +14,6 @@ const Card: React.FC<Props> = (props) => {
       overflow-hidden
       box-border
       rounded-8
-      p-1px
       border="~ gray solid"
       className={props.className}
     >
