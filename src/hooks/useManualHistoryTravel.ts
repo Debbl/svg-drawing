@@ -2,8 +2,7 @@ import { useHistoryTravel } from "ahooks";
 import { useEffect, useMemo, useState } from "react";
 
 const useManualHistoryTravel = <T>(initialValue: T) => {
-  const { value, setValue, back, forward, reset } =
-    useHistoryTravel<T>(initialValue);
+  const { value, setValue, ..._actions } = useHistoryTravel<T>(initialValue);
   const [state, setState] = useState<T>(initialValue);
 
   useEffect(() => value && setState(value), [value]);
@@ -20,9 +19,7 @@ const useManualHistoryTravel = <T>(initialValue: T) => {
   return {
     value: state,
     setState,
-    back,
-    forward,
-    reset,
+    ..._actions,
     ...actions,
   } as const;
 };

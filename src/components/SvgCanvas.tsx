@@ -1,5 +1,6 @@
 import {
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -31,6 +32,8 @@ interface Props {
   drawOptions?: DrawOptions;
   replayOptions?: SvgReplayOptions;
   brushOptions?: BrushOptions;
+  setCanUndo?: (canUndo: boolean) => void;
+  setCanRedo?: (canRedo: boolean) => void;
 }
 
 interface ImperativeHandle {
@@ -65,7 +68,8 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     commit,
     back,
     forward,
-    reset,
+    forwardLength,
+    backLength,
   } = useManualHistoryTravel<Line[]>([...(props.initialLines ?? [])]);
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -117,6 +121,15 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
 
   useEventListener("mousemove", onMousemove);
   useEventListener("mouseup", onMouseup);
+
+  useEffect(
+    () => props.setCanUndo && props.setCanUndo(backLength > 0),
+    [backLength, props]
+  );
+  useEffect(
+    () => props.setCanRedo && props.setCanRedo(forwardLength > 0),
+    [forwardLength, props]
+  );
 
   function onDrawStart(e: Position) {
     const isStart = true;

@@ -15,6 +15,7 @@ const Card: React.FC<Props> = (props) => {
       box-border
       rounded-8
       p-1px
+      border="~ gray solid"
       className={props.className}
     >
       {props.children}
