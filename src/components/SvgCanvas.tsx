@@ -13,7 +13,6 @@ import type {
 } from "react";
 import { getStroke } from "perfect-freehand";
 import { useEventListener } from "ahooks";
-import { throttle } from "lodash-es";
 import type {
   BrushOptions,
   DrawOptions,
@@ -108,11 +107,14 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
 
   const onMouseDown: MouseEventHandler<SVGSVGElement> = (e) =>
     onDrawStart({ x: e.clientX, y: e.clientY });
-  const onMousemove = throttle(
-    (e: MouseEvent) =>
-      onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!),
-    30
-  );
+  // TODO
+  // const onMousemove = throttle(
+  //   (e: MouseEvent) =>
+  //     onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!),
+  //   30
+  // );
+  const onMousemove = (e: MouseEvent) =>
+    onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!);
   const onMouseup = (_: MouseEvent) => onDrawEnd();
 
   useImperativeHandle(ref, () => ({
