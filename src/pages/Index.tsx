@@ -15,6 +15,18 @@ const Index: React.FC = () => {
           <PenCursor />
         </Card>
       </div>
+
+      <div>
+        <button onClick={() => svgCanvasRef.current?.onClear()}>clear</button>
+        <button
+          onClick={() => {
+            svgCanvasRef.current?.undo();
+          }}
+        >
+          undo
+        </button>
+        <button onClick={() => svgCanvasRef.current?.redo()}>redo</button>
+      </div>
     </div>
   );
 };

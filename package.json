@@ -32,6 +32,7 @@
     "@unocss/eslint-config": "^0.54.1",
     "@unocss/preset-attributify": "^0.54.1",
     "@unocss/preset-icons": "^0.54.1",
+    "@unocss/transformer-attributify-jsx": "^0.54.1",
     "@unocss/transformer-attributify-jsx-babel": "^0.54.1",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.46.0",

@@ -21,6 +21,7 @@ import type {
   Position,
   SvgReplayOptions,
 } from "~/types";
+import useManualHistoryTravel from "~/hooks/useManualHistoryTravel";
 
 interface Props {
   width: number;
@@ -34,11 +35,13 @@ interface Props {
 
 interface ImperativeHandle {
   onClear: () => void;
+  undo: () => void;
+  redo: () => void;
 }
 
 const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   props,
-  _
+  ref
 ) => {
   const svgAttrs = {
     width: props.width,
@@ -56,15 +59,19 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   };
 
   const [isDrawing, setIsDrawing] = useState(false);
-  const [lines, setLines] = useState<Line[]>(() => [
-    ...(props.initialLines ?? []),
-  ]);
+  const {
+    value: lines,
+    setState: setLines,
+    commit,
+    back,
+    forward,
+  } = useManualHistoryTravel<Line[]>([...(props.initialLines ?? [])]);
 
   const svgRef = useRef<SVGSVGElement>(null);
 
   const paths = useMemo(
     () =>
-      lines.map(
+      lines?.map(
         (line) =>
           ({
             d:
@@ -82,7 +89,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   );
   const brushworkLines = useMemo(
     () =>
-      lines.map((line) => {
+      lines?.map((line) => {
         const points = getStroke(line, props.brushOptions);
         const d = `M${points
           .map((p) => p.map((v) => v.toFixed(2)).join(","))
@@ -95,13 +102,16 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   const onMouseDown: MouseEventHandler<SVGSVGElement> = (e) =>
     onDrawStart({ x: e.clientX, y: e.clientY });
   const onMousemove = throttle(
-    (e: MouseEvent) => onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines),
+    (e: MouseEvent) =>
+      onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!),
     30
   );
   const onMouseup = (_: MouseEvent) => onDrawEnd();
 
-  useImperativeHandle(undefined, () => ({
+  useImperativeHandle(ref, () => ({
     onClear,
+    undo: back,
+    redo: forward,
   }));
 
   useEventListener("mousemove", onMousemove);
@@ -109,7 +119,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
 
   function onDrawStart(e: Position) {
     const isStart = true;
-    const newLines = [...lines, []];
+    const newLines = [...(lines ?? []), []];
     setIsDrawing(isStart);
     onDraw(e, isStart, newLines);
   }
@@ -135,6 +145,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     if (!isDrawing) return;
 
     setIsDrawing(false);
+    commit();
   }
 
   function onClear() {
@@ -146,13 +157,13 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
       <svg {...svgAttrs} ref={svgRef} onMouseDown={(e) => onMouseDown(e)}>
         <rect {...bgReactAttr} />
         <g mask="url(#brush)">
-          {paths.map((p, i) => (
+          {paths?.map((p, i) => (
             <path key={i} {...p} />
           ))}
         </g>
         <mask id="brush">
           <rect x="0" y="0" width="100%" height="100%" fill="black" />
-          {brushworkLines.map((p, i) => (
+          {brushworkLines?.map((p, i) => (
             <path key={i} {...p} fill="white" />
           ))}
         </mask>
