@@ -65,6 +65,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     commit,
     back,
     forward,
+    reset,
   } = useManualHistoryTravel<Line[]>([...(props.initialLines ?? [])]);
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -149,7 +150,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   }
 
   function onClear() {
-    setLines([]);
+    commit([]);
   }
 
   return (
