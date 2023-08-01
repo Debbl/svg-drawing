@@ -2,6 +2,7 @@ import type { ElementRef, RefObject } from "react";
 import React from "react";
 import Input from "./Input";
 import type SvgCanvas from "./SvgCanvas";
+import helper from "~/helper";
 
 interface Props {
   canUndo: boolean;
@@ -69,6 +70,25 @@ const Panel: React.FC<Props> = ({
         <Input value={height} setValue={setHeight} suffix="px" />
         <span mx-3>{"*"}</span>
         <Input value={width} setValue={setWidth} suffix="px" />
+      </div>
+
+      <div>
+        <button
+          flex="~ center"
+          gap-1
+          h10
+          btn
+          border-style-none
+          onClick={() =>
+            helper.download(
+              svgCanvasRef.current?.getSvgUrl() ?? "",
+              "svg-drawing.svg"
+            )
+          }
+        >
+          <div i-carbon:download></div>
+          <span>Save</span>
+        </button>
       </div>
     </div>
   );
