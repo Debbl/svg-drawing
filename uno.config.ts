@@ -5,9 +5,7 @@ import {
   presetUno,
 } from "unocss";
 
-// import transformerAttributifyJsx from "@unocss/transformer-attributify-jsx";
-
-import transformerAttributifyJsx from "@unocss/transformer-attributify-jsx-babel";
+import transformerAttributifyJsxBabel from "@unocss/transformer-attributify-jsx-babel";
 
 export default defineConfig({
   shortcuts: [
@@ -34,5 +32,5 @@ export default defineConfig({
     }),
     presetAttributify(),
   ],
-  transformers: [transformerAttributifyJsx()],
+  transformers: [transformerAttributifyJsxBabel()],
 });
