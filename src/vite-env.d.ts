@@ -5,7 +5,6 @@ import type { AttributifyAttributes } from "@unocss/preset-attributify";
 declare module "react" {
   interface HTMLAttributes<T> extends AttributifyAttributes {
     full?: string | boolean;
-    left?: string | boolean;
     btn?: string | boolean;
   }
 }

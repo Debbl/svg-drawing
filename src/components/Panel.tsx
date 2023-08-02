@@ -24,7 +24,7 @@ const Panel: React.FC<Props> = ({
   svgCanvasRef,
 }) => {
   return (
-    <div flex="~ center" gap-x-3 absolute left="1/2" translate-x="-1/2">
+    <div flex="~ center" gap-x-3 absolute pos="left-1/2" translate-x="-1/2">
       <div flex="~ items-center" gap-2>
         <button
           flex="~ center"
