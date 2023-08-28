@@ -3,26 +3,23 @@ import React from "react";
 import Input from "./Input";
 import type SvgCanvas from "./SvgCanvas";
 import helper from "~/helper";
+import usePanelStore from "~/store/usePanelStore";
 
 interface Props {
-  canUndo: boolean;
-  canRedo: boolean;
-  height: number;
-  width: number;
-  setHeight: (height: number) => void;
-  setWidth: (width: number) => void;
   svgCanvasRef: RefObject<ElementRef<typeof SvgCanvas>>;
 }
 
-const Panel: React.FC<Props> = ({
-  canRedo,
-  canUndo,
-  height,
-  width,
-  setHeight,
-  setWidth,
-  svgCanvasRef,
-}) => {
+const Panel: React.FC<Props> = ({ svgCanvasRef }) => {
+  const { width, height, canUndo, canRedo, setWidth, setHeight } =
+    usePanelStore((s) => ({
+      width: s.width,
+      height: s.height,
+      canUndo: s.canUndo,
+      canRedo: s.canRedo,
+      setWidth: s.setWidth,
+      setHeight: s.setHeight,
+    }));
+
   return (
     <div flex="~ center" gap-x-3 absolute pos="left-1/2" translate-x="-1/2">
       <div flex="~ items-center" gap-2>
@@ -67,9 +64,9 @@ const Panel: React.FC<Props> = ({
       </div>
 
       <div flex="~ center">
-        <Input value={height} setValue={setHeight} suffix="px" />
-        <span mx-3>{"*"}</span>
         <Input value={width} setValue={setWidth} suffix="px" />
+        <span mx-3>{"*"}</span>
+        <Input value={height} setValue={setHeight} suffix="px" />
       </div>
 
       <div>
