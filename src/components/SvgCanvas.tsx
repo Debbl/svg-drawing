@@ -65,15 +65,15 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
       lines?.map(
         (line) =>
           ({
-            d:
+            "d":
               line.length === 1
                 ? `M${line[0].join(" ")}L${line[0].join(" ")}`
                 : `M${line.map((p) => p.join(",")).join("L")}`,
-            strokeWidth: drawOptions?.strokeWidth ?? "5",
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            stroke: drawOptions?.color ?? "black",
-            fill: "none",
+            "stroke-width": drawOptions?.strokeWidth ?? "5",
+            "stroke-linecap": "round",
+            "stroke-linejoin": "round",
+            "stroke": drawOptions?.color ?? "black",
+            "fill": "none",
           } as SVGProps<SVGPathElement>)
       ),
     [lines, drawOptions?.color, drawOptions?.strokeWidth]
@@ -92,12 +92,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
 
   const onMouseDown: MouseEventHandler<SVGSVGElement> = (e) =>
     onDrawStart({ x: e.clientX, y: e.clientY });
-  // TODO
-  // const onMousemove = throttle(
-  //   (e: MouseEvent) =>
-  //     onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!),
-  //   30
-  // );
+  // TODO try use throttle
   const onMousemove = (e: MouseEvent) =>
     onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!);
   const onMouseup = (_: MouseEvent) => onDrawEnd();

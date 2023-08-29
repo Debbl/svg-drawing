@@ -17,9 +17,9 @@ const useSvgAttrs = () => {
   const svgAttrs = {
     width,
     height,
-    viewBox: `0 0 ${width} ${height}`,
-    xmlns: "http://www.w3.org/2000/svg",
-    xmlnsXlink: "http://www.w3.org/1999/xlink",
+    "viewBox": `0 0 ${width} ${height}`,
+    "xmlns": "http://www.w3.org/2000/svg",
+    "xmlns:xlink": "http://www.w3.org/1999/xlink",
   };
 
   const bgRectAttrs = {
