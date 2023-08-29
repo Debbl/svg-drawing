@@ -2,16 +2,17 @@ import type { SVGProps } from "react";
 import helper from "~/helper";
 import useOptionsStore from "~/store/useOptionsStore";
 import usePanelStore from "~/store/usePanelStore";
-import type { Line, ReplayOptions } from "~/types";
+import type { Line } from "~/types";
 
 const useSvgAttrs = () => {
   const { width, height } = usePanelStore((s) => ({
     width: s.width,
     height: s.height,
   }));
-  const { brushOptions, background } = useOptionsStore((s) => ({
+  const { brushOptions, replayOptions, background } = useOptionsStore((s) => ({
     background: s.draw.background,
     brushOptions: s.brush,
+    replayOptions: s.replay,
   }));
 
   const svgAttrs = {
@@ -33,7 +34,6 @@ const useSvgAttrs = () => {
   function getSvg(
     paths: SVGProps<SVGPathElement>[],
     lines: Line[],
-    options: ReplayOptions,
     brushworkLines: {
       d: string;
     }[]
@@ -46,7 +46,7 @@ const useSvgAttrs = () => {
       easing = "ease",
       loopInterval = 1000,
       wipe = 500,
-    } = options;
+    } = replayOptions;
 
     const lineLengths = lines.map((line) => helper.lineLength(line));
     const totalLength = lineLengths.reduce((sum, length) => sum + length, 0);

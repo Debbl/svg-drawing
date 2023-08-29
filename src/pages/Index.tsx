@@ -6,6 +6,7 @@ import Card from "~/components/Card";
 import PenCursor from "~/components/PenCursor";
 import Panel from "~/components/Panel";
 import useLevaControls from "~/hooks/useLevaControls";
+import SvgPreviewer from "~/components/SvgPreviewer";
 
 const Index: React.FC = () => {
   useLevaControls();
@@ -22,6 +23,8 @@ const Index: React.FC = () => {
           <PenCursor />
         </Card>
       </div>
+
+      <SvgPreviewer />
 
       <Panel svgCanvasRef={svgCanvasRef} />
     </div>

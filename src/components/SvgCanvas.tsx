@@ -19,6 +19,7 @@ import helper from "~/helper";
 import useOptionsStore from "~/store/useOptionsStore";
 import usePanelStore from "~/store/usePanelStore";
 import useSvgAttrs from "~/hooks/useSvgAttrs";
+import useSvgStore from "~/store/useSvgStore";
 
 interface Props {
   densities?: number;
@@ -41,9 +42,14 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     drawOptions: s.draw,
     replayOptions: s.replay,
   }));
-  const { setCanRedo, setCanUndo } = usePanelStore((s) => ({
+  const { width, height, setCanRedo, setCanUndo } = usePanelStore((s) => ({
+    width: s.width,
+    height: s.height,
     setCanUndo: s.setCanUndo,
     setCanRedo: s.setCanRedo,
+  }));
+  const { setSvg } = useSvgStore((s) => ({
+    setSvg: s.setSvg,
   }));
   const {
     value: lines,
@@ -101,8 +107,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     onClear,
     undo: back,
     redo: forward,
-    getSvgUrl: () =>
-      helper.svgCode2Url(getSvg(paths, lines, replayOptions, brushworkLines)),
+    getSvgUrl: () => helper.svgCode2Url(getSvg(paths, lines, brushworkLines)),
   }));
 
   useEventListener("mousemove", onMousemove);
@@ -117,6 +122,12 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     () => setCanRedo(forwardLength > 0),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [forwardLength]
+  );
+
+  useEffect(
+    () => setSvg(getSvg(paths, lines, brushworkLines)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [brushOptions, drawOptions, replayOptions, width, height]
   );
 
   function onDrawStart(e: Position) {
@@ -148,6 +159,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
 
     setIsDrawing(false);
     commit();
+    setSvg(getSvg(paths, lines, brushworkLines));
   }
 
   function onClear() {
