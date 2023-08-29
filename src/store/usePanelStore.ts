@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { combine } from "zustand/middleware";
+import { combine, persist } from "zustand/middleware";
+import { StoreKeys, storeVersion } from "~/constants";
 
 export interface PanelState {
   width: number;
@@ -16,19 +17,25 @@ export interface PanelActions {
 }
 
 const usePanelStore = create<PanelState & PanelActions>()(
-  combine(
+  persist(
+    combine(
+      {
+        width: 800,
+        height: 600,
+        canUndo: false,
+        canRedo: false,
+      },
+      (set) => ({
+        setWidth: (width) => set({ width }),
+        setHeight: (height) => set({ height }),
+        setCanUndo: (canUndo) => set({ canUndo }),
+        setCanRedo: (canRedo) => set({ canRedo }),
+      })
+    ),
     {
-      width: 800,
-      height: 600,
-      canUndo: false,
-      canRedo: false,
-    },
-    (set) => ({
-      setWidth: (width) => set({ width }),
-      setHeight: (height) => set({ height }),
-      setCanUndo: (canUndo) => set({ canUndo }),
-      setCanRedo: (canRedo) => set({ canRedo }),
-    })
+      name: StoreKeys.Panel,
+      version: storeVersion,
+    }
   )
 );
 

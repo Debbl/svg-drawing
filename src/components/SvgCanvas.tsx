@@ -14,16 +14,16 @@ import type {
 import { getStroke } from "perfect-freehand";
 import { useEventListener } from "ahooks";
 import type { Line, Point, Position } from "~/types";
-import useManualHistoryTravel from "~/hooks/useManualHistoryTravel";
 import helper from "~/helper";
 import useOptionsStore from "~/store/useOptionsStore";
 import usePanelStore from "~/store/usePanelStore";
 import useSvgAttrs from "~/hooks/useSvgAttrs";
 import useSvgStore from "~/store/useSvgStore";
+import useLines from "~/hooks/useLines";
 
+// TODO
 interface Props {
   densities?: number;
-  initialLines?: Line[];
 }
 
 interface ImperativeHandle {
@@ -34,7 +34,7 @@ interface ImperativeHandle {
 }
 
 const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
-  props,
+  _,
   ref
 ) => {
   const { brushOptions, drawOptions, replayOptions } = useOptionsStore((s) => ({
@@ -59,7 +59,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
     forward,
     forwardLength,
     backLength,
-  } = useManualHistoryTravel<Line[]>([...(props.initialLines ?? [])]);
+  } = useLines();
 
   const { svgAttrs, bgRectAttrs, getSvg } = useSvgAttrs();
 
