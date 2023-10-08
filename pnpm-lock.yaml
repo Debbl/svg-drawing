@@ -93,7 +93,7 @@ devDependencies:
     version: 5.1.6
   unocss:
     specifier: ^0.54.1
-    version: 0.54.1(postcss@8.4.27)(vite@4.4.7)
+    version: 0.54.1(postcss@8.4.31)(vite@4.4.7)
   vite:
     specifier: ^4.4.7
     version: 4.4.7
@@ -1706,7 +1706,7 @@ packages:
       sirv: 2.0.3
     dev: true
 
-  /@unocss/postcss@0.54.1(postcss@8.4.27):
+  /@unocss/postcss@0.54.1(postcss@8.4.31):
     resolution: {integrity: sha512-6f1x/ZIRk6Q7olopWmdVVrVJZv5N45oFT4lSsrYJxbWnyk/D37chH8B+9Q9OrBcahLr7ImxL9DVMkGIBu6rpVw==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -1717,7 +1717,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.3.1
       magic-string: 0.30.2
-      postcss: 8.4.27
+      postcss: 8.4.31
     dev: true
 
   /@unocss/preset-attributify@0.54.1:
@@ -4094,8 +4094,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss@8.4.27:
-    resolution: {integrity: sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==}
+  /postcss@8.4.31:
+    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
@@ -4721,7 +4721,7 @@ packages:
       '@types/unist': 2.0.7
     dev: true
 
-  /unocss@0.54.1(postcss@8.4.27)(vite@4.4.7):
+  /unocss@0.54.1(postcss@8.4.31)(vite@4.4.7):
     resolution: {integrity: sha512-tT2hkDzjf2KV/neYKG/nVYxlpmgn36PGfrT3rE2zk+gaEMU+bU42CisiSkRQ7c2w4d/+zLeCmLz+dj71D8LhFA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -4734,7 +4734,7 @@ packages:
       '@unocss/cli': 0.54.1
       '@unocss/core': 0.54.1
       '@unocss/extractor-arbitrary-variants': 0.54.1
-      '@unocss/postcss': 0.54.1(postcss@8.4.27)
+      '@unocss/postcss': 0.54.1(postcss@8.4.31)
       '@unocss/preset-attributify': 0.54.1
       '@unocss/preset-icons': 0.54.1
       '@unocss/preset-mini': 0.54.1
@@ -4827,7 +4827,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.18.17
-      postcss: 8.4.27
+      postcss: 8.4.31
       rollup: 3.27.0
     optionalDependencies:
       fsevents: 2.3.2
