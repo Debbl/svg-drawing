@@ -30,13 +30,13 @@ const usePanelStore = create<PanelState & PanelActions>()(
         setHeight: (height) => set({ height }),
         setCanUndo: (canUndo) => set({ canUndo }),
         setCanRedo: (canRedo) => set({ canRedo }),
-      })
+      }),
     ),
     {
       name: StoreKeys.Panel,
       version: storeVersion,
-    }
-  )
+    },
+  ),
 );
 
 export default usePanelStore;

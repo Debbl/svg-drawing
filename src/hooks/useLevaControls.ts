@@ -33,7 +33,7 @@ const useLevaControls = () => {
       },
       {
         collapsed: true,
-      }
+      },
     ),
     "Replay Options": folder(
       {
@@ -67,7 +67,7 @@ const useLevaControls = () => {
       },
       {
         collapsed: true,
-      }
+      },
     ),
     "brush Options": folder(
       {
@@ -114,7 +114,7 @@ const useLevaControls = () => {
       },
       {
         collapsed: true,
-      }
+      },
     ),
   });
 

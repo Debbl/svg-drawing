@@ -23,13 +23,13 @@ const useSvgStore = create<SvgState & SvgActions>()(
       (set) => ({
         setSvg: (svg) => set({ svg }),
         setLines: (lines) => set({ lines }),
-      })
+      }),
     ),
     {
       name: StoreKeys.Svg,
       version: storeVersion,
-    }
-  )
+    },
+  ),
 );
 
 export default useSvgStore;

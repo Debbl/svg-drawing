@@ -79,7 +79,7 @@ const Panel: React.FC<Props> = ({ svgCanvasRef }) => {
           onClick={() =>
             helper.download(
               svgCanvasRef.current?.getSvgUrl() ?? "",
-              "svg-drawing.svg"
+              "svg-drawing.svg",
             )
           }
         >

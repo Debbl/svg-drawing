@@ -17,7 +17,7 @@ const distance = (p1: Point, p2: Point) =>
 const lineLength = (line: Point[]) => {
   return line.reduce(
     (acc, p, i) => acc + (i > 0 ? distance(p, line[i - 1]) : 0),
-    0
+    0,
   );
 };
 

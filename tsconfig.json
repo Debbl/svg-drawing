@@ -26,5 +26,5 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src", "vite.config.ts"]
+  "include": ["src", "vite.config.ts", "uno.config.ts"]
 }

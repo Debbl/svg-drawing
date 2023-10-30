@@ -23,7 +23,7 @@ const useSvgAttrs = () => {
       "xmlns": "http://www.w3.org/2000/svg",
       "xmlns:xlink": "http://www.w3.org/1999/xlink",
     }),
-    [height, width]
+    [height, width],
   );
 
   const bgRectAttrs = useMemo(
@@ -34,7 +34,7 @@ const useSvgAttrs = () => {
       height,
       fill: background ?? "white",
     }),
-    [background, height, width]
+    [background, height, width],
   );
 
   const getSvg = useCallback(
@@ -43,7 +43,7 @@ const useSvgAttrs = () => {
       lines: Line[],
       brushworkLines: {
         d: string;
-      }[]
+      }[],
     ) => {
       if (!paths.length) return "";
 
@@ -77,7 +77,7 @@ const useSvgAttrs = () => {
         lineDelayReverse.push(
           totalDuration -
             wipeDuration -
-            (lineDelays[i] / drawDuration) * wipeDuration
+            (lineDelays[i] / drawDuration) * wipeDuration,
         );
       });
 
@@ -103,7 +103,7 @@ const useSvgAttrs = () => {
           helper.tab(
             `animation: draw-${i} ${totalDuration}ms ${easing} forwards ${
               loop ? "infinite" : ""
-            };`
+            };`,
           ),
           "}",
           `@keyframes draw-${i} {`,
@@ -111,19 +111,19 @@ const useSvgAttrs = () => {
           startDrawPercent === 0
             ? null
             : helper.tab(
-                `${startDrawPercent}% { stroke-dashoffset: ${length}; }`
+                `${startDrawPercent}% { stroke-dashoffset: ${length}; }`,
               ),
           helper.tab(
-            `${stopDrawPercent.toFixed(2)}% { stroke-dashoffset: 0; }`
+            `${stopDrawPercent.toFixed(2)}% { stroke-dashoffset: 0; }`,
           ),
           helper.tab(
-            `${wipeStartPercent.toFixed(2)}% { stroke-dashoffset: 0; }`
+            `${wipeStartPercent.toFixed(2)}% { stroke-dashoffset: 0; }`,
           ),
           wipe
             ? helper.tab(
                 `${wipeStopPercent.toFixed(
-                  2
-                )}% { stroke-dashoffset: ${length}; }`
+                  2,
+                )}% { stroke-dashoffset: ${length}; }`,
               )
             : null,
           helper.tab(`100% { stroke-dashoffset: ${wipe ? length : 0}; }`),
@@ -150,8 +150,8 @@ const useSvgAttrs = () => {
               helper.tag("path", {
                 ...p,
                 class: `line-${i}`,
-              })
-            )
+              }),
+            ),
           ),
           brushOptions?.disable
             ? null
@@ -167,13 +167,13 @@ const useSvgAttrs = () => {
                   helper.tag("path", {
                     ...p,
                     fill: "white",
-                  })
+                  }),
                 ),
               ]),
-        ]
+        ],
       );
     },
-    [bgRectAttrs, brushOptions?.disable, replayOptions, svgAttrs]
+    [bgRectAttrs, brushOptions?.disable, replayOptions, svgAttrs],
   );
 
   return {

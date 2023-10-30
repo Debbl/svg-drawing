@@ -45,13 +45,13 @@ const useOptionsStore = create<OptionsState & OptionsActions>()(
       },
       (set) => ({
         setOptions: (options) => set(options),
-      })
+      }),
     ),
     {
       name: StoreKeys.Options,
       version: storeVersion,
-    }
-  )
+    },
+  ),
 );
 
 export default useOptionsStore;

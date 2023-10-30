@@ -35,7 +35,7 @@ interface ImperativeHandle {
 
 const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   _,
-  ref
+  ref,
 ) => {
   const { brushOptions, drawOptions } = useOptionsStore((s) => ({
     brushOptions: s.brush,
@@ -80,9 +80,9 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
             "stroke-linejoin": "round",
             "stroke": drawOptions?.color ?? "black",
             "fill": "none",
-          } as SVGProps<SVGPathElement>)
+          }) as SVGProps<SVGPathElement>,
       ),
-    [lines, drawOptions?.color, drawOptions?.strokeWidth]
+    [lines, drawOptions?.color, drawOptions?.strokeWidth],
   );
   const brushworkLines = useMemo(
     () =>
@@ -93,14 +93,14 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
           .join("L")}Z`;
         return { d };
       }),
-    [lines, brushOptions]
+    [lines, brushOptions],
   );
 
   const onMouseDown: MouseEventHandler<SVGSVGElement> = (e) =>
     onDrawStart({ x: e.clientX, y: e.clientY });
   // TODO try use throttle
   const onMousemove = (e: MouseEvent) =>
-    onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines!);
+    onDraw({ x: e.clientX, y: e.clientY }, isDrawing, lines);
   const onMouseup = (_: MouseEvent) => onDrawEnd();
 
   useImperativeHandle(ref, () => ({
@@ -118,7 +118,7 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
 
   useEffect(
     () => setSvg(getSvg(paths, lines, brushworkLines)),
-    [brushworkLines, getSvg, lines, paths, setSvg]
+    [brushworkLines, getSvg, lines, paths, setSvg],
   );
 
   function onDrawStart(e: Position) {
@@ -162,15 +162,11 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
       <svg {...svgAttrs} ref={svgRef} onMouseDown={(e) => onMouseDown(e)}>
         <rect {...bgRectAttrs} />
         <g mask="url(#brush)">
-          {paths?.map((p, i) => (
-            <path key={i} {...p} />
-          ))}
+          {paths?.map((p, i) => <path key={i} {...p} />)}
         </g>
         <mask id="brush">
           <rect x="0" y="0" width="100%" height="100%" fill="black" />
-          {brushworkLines?.map((p, i) => (
-            <path key={i} {...p} fill="white" />
-          ))}
+          {brushworkLines?.map((p, i) => <path key={i} {...p} fill="white" />)}
         </mask>
       </svg>
     </div>

@@ -13,7 +13,7 @@ const useManualHistoryTravel = <T>(initialValue: T) => {
         setValue(newState ?? state);
       },
     }),
-    [setValue, state]
+    [setValue, state],
   );
 
   return {
