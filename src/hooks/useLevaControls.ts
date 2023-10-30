@@ -146,8 +146,7 @@ const useLevaControls = () => {
         },
       },
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [_options]);
+  }, [_options, setOptions]);
 
   return { options };
 };

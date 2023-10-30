@@ -37,12 +37,12 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   _,
   ref
 ) => {
-  const { brushOptions, drawOptions, replayOptions } = useOptionsStore((s) => ({
+  const { brushOptions, drawOptions } = useOptionsStore((s) => ({
     brushOptions: s.brush,
     drawOptions: s.draw,
     replayOptions: s.replay,
   }));
-  const { width, height, setCanRedo, setCanUndo } = usePanelStore((s) => ({
+  const { setCanRedo, setCanUndo } = usePanelStore((s) => ({
     width: s.width,
     height: s.height,
     setCanUndo: s.setCanUndo,
@@ -113,21 +113,12 @@ const SvgCanvas: ForwardRefRenderFunction<ImperativeHandle, Props> = (
   useEventListener("mousemove", onMousemove);
   useEventListener("mouseup", onMouseup);
 
-  useEffect(
-    () => setCanUndo(backLength > 0),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [backLength]
-  );
-  useEffect(
-    () => setCanRedo(forwardLength > 0),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [forwardLength]
-  );
+  useEffect(() => setCanUndo(backLength > 0), [backLength, setCanUndo]);
+  useEffect(() => setCanRedo(forwardLength > 0), [forwardLength, setCanRedo]);
 
   useEffect(
     () => setSvg(getSvg(paths, lines, brushworkLines)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [brushOptions, drawOptions, replayOptions, width, height]
+    [brushworkLines, getSvg, lines, paths, setSvg]
   );
 
   function onDrawStart(e: Position) {

@@ -10,8 +10,7 @@ const useLines = () => {
 
   const actions = useManualHistoryTravel(lines);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setLines(actions.value), [actions.value]);
+  useEffect(() => setLines(actions.value), [actions.value, setLines]);
 
   return actions;
 };
