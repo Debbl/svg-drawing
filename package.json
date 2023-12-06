@@ -1,8 +1,10 @@
 {
   "name": "svg-drawing",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "author": "Brendan Dash <me@aiwan.run> (https://aiwan.me)",
+  "homepage": "https://github.com/Debbl/svg-drawing",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
