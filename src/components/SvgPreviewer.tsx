@@ -10,6 +10,8 @@ const SvgPreviewer: React.FC = () => {
     height: s.height,
   }));
 
+  if (!svg) return;
+
   return (
     <div
       fixed

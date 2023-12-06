@@ -14,19 +14,18 @@ const Index: React.FC = () => {
   const svgCanvasRef = useRef<ElementRef<typeof SvgCanvas>>(null);
 
   return (
-    <div text-center relative>
+    <div full text-center relative flex="~ items-center justify-center">
       <Leva collapsed={true} hideCopyButton={true} />
 
-      <div inline-block>
+      <div flex="~ col gap-y-2">
         <Card>
           <SvgCanvas ref={svgCanvasRef} />
           <PenCursor />
         </Card>
+        <Panel svgCanvasRef={svgCanvasRef} />
       </div>
 
       <SvgPreviewer />
-
-      <Panel svgCanvasRef={svgCanvasRef} />
     </div>
   );
 };
